@@ -1,0 +1,41 @@
+const mongoose = require('mongoose')
+
+const paperSchema = mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User',
+    }
+    ,
+    // text: {
+    //   type: String,
+    //   required: [true, 'Please add a text value'],
+    // }
+    
+    paper_title: {
+      type: String
+  },
+  authors: {
+      type: String
+  },
+  keywords: {
+      type: String
+  },
+  abstract: {
+      type: String
+  },
+  pdf_attachment: {
+    type: String
+},
+submitted_by_author: {
+  type: String
+}
+  },
+  {
+    timestamps: true,
+  }
+  
+)
+
+module.exports = mongoose.model('Paper', paperSchema)
