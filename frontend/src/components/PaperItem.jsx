@@ -1,9 +1,12 @@
-import { useDispatch } from 'react-redux'
-import { deletePaper } from '../features/papers/paperSlice'
+import {useNavigate} from 'react-router-dom' ;
 
 function PaperItem({ paper }) {
-  const dispatch = useDispatch()
+  
+  const navigate = useNavigate();
 
+  const reviewForm = () => {
+    navigate('/review');
+  }
   return (
     // <div className='paper'>
     //   <div>{new Date(paper.createdAt).toLocaleString('en-US')}</div>
@@ -21,7 +24,7 @@ function PaperItem({ paper }) {
                             <td ><a href={paper.pdf_attachment} target="_blank">View Paper</a></td>
                             
                             <td >{paper.submitted_by_author}</td>
-                            <td><button >Update</button></td>
+                            <td><button onClick={reviewForm}>Review</button></td>
                     </tr>
   )
 }

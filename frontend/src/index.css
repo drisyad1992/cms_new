@@ -230,3 +230,155 @@ h3 {
     font-size: 1.5rem;
   }
 }
+
+/* Default styles */
+.review-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 700;
+  color: purple;
+}
+
+/* Styles for the slider input */
+input[type="range"] {
+  width: 50%;
+  height: 25px;
+  background: #ddd;
+  outline: none;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #3498db;
+  cursor: pointer;
+  border-radius: 50%;
+  margin-top: -7px;
+}
+
+/* Styles for the slider legends */
+.slider-legend-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.slider-legend {
+  display: inline-block;
+  width: calc(320px / 5);
+  text-align: center;
+  margin: 0 20px;
+}
+
+/* Styles for the slider labels */
+.slider-labels-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.slider-label {
+  display: inline-block;
+  width: calc(320px / 5);
+  text-align: center;
+  margin: 0 20px;
+}
+
+input[type="number"],
+textarea {
+  margin: 10px 0;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 450px;
+  max-width: 100%;
+  height: fit-content; 
+}
+
+.button1 {
+  margin: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #bc7716e9;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+button {
+  margin: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: purple;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+button:disabled {
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+p {
+  margin: 20px;
+  font-size: 18px;
+  color: #4caf50;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Media queries */
+@media only screen and (max-width: 600px) {
+  input[type="range"] {
+    width: 80%;
+  }
+  
+  .slider-labels-container, .slider-legend-container {
+    flex-wrap: wrap;
+  }
+  
+  .slider-label, .slider-legend {
+    width: calc(150px / 5);
+    margin: 5px;
+  }
+
+  input[type="number"],
+  textarea {
+    width: 100%;
+  }
+  
+  .button-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+
+  .button1 {
+    margin-top: 10px;
+  }
+}
+
