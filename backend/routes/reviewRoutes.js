@@ -1,13 +1,13 @@
 const express = require('express')
 const router = express.Router()
 const {
-    createReview,
+    createReviewDraft,
     createReviewSubmit
 } = require('../controllers/reviewController')
 
 const { protect } = require('../middleware/authMiddleware')
 
-router.route('/:id').post(protect, createReview)
-router.route('/').post(protect, createReviewSubmit)
+router.route('/draft/:id').post(protect, createReviewDraft)
+router.route('/submit/:id').post(protect, createReviewSubmit)
 
 module.exports = router

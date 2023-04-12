@@ -6,7 +6,7 @@ import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import background from "../src/image.jpg"
-import Review from './pages/Review';
+import Review from './pages/Review'
 
 function App() {
   return (
