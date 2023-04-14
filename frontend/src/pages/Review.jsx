@@ -14,20 +14,26 @@ function Review(){
 
   const handleDraftSubmit = (e) => {
     e.preventDefault();
+    if (!overallScore && !reviewDetails && !privateComments) {
+      alert('Please fill at least one field');
+      return;
+    } 
     const data = { overallScore, reviewDetails, privateComments };
-    console.log(data);
     dispatch(createReviewDraft(id, data));
+    alert('Thank You!! Your draft has been saved');
     setIsSubmitted(false);
   };
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(review && !review.isSubmitted){
-      const data = { overallScore, reviewDetails, privateComments };
-      console.log(data);
-      dispatch(createReviewSubmit(id, data));
-      setIsSubmitted(true);
+    if (!overallScore || !reviewDetails || !privateComments) {
+      alert('Please fill all the fields');
+      return;
     }
+    const data = { overallScore, reviewDetails, privateComments };
+    dispatch(createReviewSubmit(id, data));
+    alert('Review submitted! You cannot make any further changes');
+    setIsSubmitted(true);
   };
 
   return (
