@@ -5,9 +5,9 @@ const {
     createReviewSubmit
 } = require('../controllers/reviewController')
 
-const { protect } = require('../middleware/authMiddleware')
+//const { protect } = require('../middleware/authMiddleware')
 
-router.route('/draft/:id').post(protect, createReviewDraft)
-router.route('/submit/:id').post(protect, createReviewSubmit)
+router.route('/draft/:id').post(createReviewDraft)
+router.route('/submit/:id').post(createReviewSubmit)
 
 module.exports = router

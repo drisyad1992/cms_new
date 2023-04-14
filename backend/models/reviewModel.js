@@ -6,14 +6,6 @@ const reviewSchema = new mongoose.Schema({
         required: true,
         ref: 'Paper',
       },
-      user: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'User',
-      },
-      name: {
-        type: String
-      },
     overallScore: {
     type: Number,
     min: -2,

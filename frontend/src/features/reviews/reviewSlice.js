@@ -1,35 +1,37 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createReviewDraftService, createReviewSubmitService } from './reviewService';
+import reviewService from './reviewService';
+
+const initialState = {
+  review: null,
+  error: null,
+  loading: false,
+};
 
 const reviewSlice = createSlice({
   name: 'review',
-  initialState: {
-    review: null,
-    loading: false,
-    error: null,
-  },
+  initialState,
   reducers: {
-    createReviewDraftRequest: (state) => {
+    createReviewDraftStart(state) {
       state.loading = true;
       state.error = null;
     },
-    createReviewDraftSuccess: (state, action) => {
+    createReviewDraftSuccess(state, action) {
       state.loading = false;
       state.review = action.payload;
     },
-    createReviewDraftFail: (state, action) => {
+    createReviewDraftFailure(state, action) {
       state.loading = false;
       state.error = action.payload;
     },
-    createReviewSubmitRequest: (state) => {
+    createReviewSubmitStart(state) {
       state.loading = true;
       state.error = null;
     },
-    createReviewSubmitSuccess: (state, action) => {
+    createReviewSubmitSuccess(state, action) {
       state.loading = false;
       state.review = action.payload;
     },
-    createReviewSubmitFail: (state, action) => {
+    createReviewSubmitFailure(state, action) {
       state.loading = false;
       state.error = action.payload;
     },
@@ -37,33 +39,32 @@ const reviewSlice = createSlice({
 });
 
 export const {
-  createReviewDraftRequest,
+  createReviewDraftStart,
   createReviewDraftSuccess,
-  createReviewDraftFail,
-  createReviewSubmitRequest,
+  createReviewDraftFailure,
+  createReviewSubmitStart,
   createReviewSubmitSuccess,
-  createReviewSubmitFail,
+  createReviewSubmitFailure,
 } = reviewSlice.actions;
 
-export const createReviewDraft = (id, reviewData) => async (dispatch) => {
+export const createReviewDraft = (id, data) => async (dispatch) => {
+  dispatch(createReviewDraftStart());
   try {
-    dispatch(createReviewDraftRequest());
-    const data = await createReviewDraftService(id, reviewData);
-    dispatch(createReviewDraftSuccess(data));
+    const review = await reviewService.createReviewDraft(id, data);
+    dispatch(createReviewDraftSuccess(review));
   } catch (error) {
-    dispatch(createReviewDraftFail(error.message));
+    dispatch(createReviewDraftFailure(error.message));
   }
 };
 
-export const createReviewSubmit = (id, reviewData) => async (dispatch) => {
+export const createReviewSubmit = (id, data) => async (dispatch) => {
+  dispatch(createReviewSubmitStart());
   try {
-    dispatch(createReviewSubmitRequest());
-    const data = await createReviewSubmitService(id, reviewData);
-    dispatch(createReviewSubmitSuccess(data));
+    const review = await reviewService.createReviewSubmit(id, data);
+    dispatch(createReviewSubmitSuccess(review));
   } catch (error) {
-    dispatch(createReviewSubmitFail(error.message));
+    dispatch(createReviewSubmitFailure(error.message));
   }
 };
 
 export default reviewSlice.reducer;
-

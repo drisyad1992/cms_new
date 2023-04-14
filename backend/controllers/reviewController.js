@@ -12,7 +12,7 @@ const createReviewDraft = asyncHandler(async (req, res) => {
 
   const existingReview = await Review.findOne({
     paper: req.params.id,
-    user: req.user.id,
+    //user: req.user.id,
     isSubmitted: false
   })
 
@@ -20,8 +20,8 @@ const createReviewDraft = asyncHandler(async (req, res) => {
     overallScore: req.body.overallScore,
     reviewDetails: req.body.reviewDetails,
     privateComments: req.body.privateComments,
-    user: req.user.id,
-    name: req.user.name,
+    //user: req.user.id,
+    //name: req.user.name,
     paper: req.params.id,
     isSubmitted: false
   }
@@ -43,7 +43,7 @@ const createReviewDraft = asyncHandler(async (req, res) => {
 const createReviewSubmit = asyncHandler(async (req, res) => {
   const review = await Review.findOne({
     paper: req.params.id,
-    user: req.user.id,
+    //user: req.user.id,
     isSubmitted: false
   })
 

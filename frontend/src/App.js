@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Router >
-        {/* <div style={{  backgroundImage: `url(${background})`,backgroundSize: 'auto 100%'}}> */}
+        <div style={{  backgroundImage: `url(${background})`,backgroundSize: 'auto 100%'}}>
         <div>
           <Header />
           <Routes>
@@ -25,11 +25,11 @@ function App() {
             {/* <Route path='/register' element={<Register />} /> */}
             <Route path='/register' element={<div className='container1'><Register /></div>} />
 
-            <Route path="/review" element={<Review />}/>
+            <Route path="/review/:id" element={<Review />}/>
 
           </Routes>
         </div>
-        
+        </div>
       </Router>
       <ToastContainer />
     </>

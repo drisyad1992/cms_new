@@ -5,7 +5,7 @@ function PaperItem({ paper }) {
   const navigate = useNavigate();
 
   const reviewForm = () => {
-    navigate('/review');
+    navigate(`/review/${paper._id}`);
   }
   return (
     // <div className='paper'>
