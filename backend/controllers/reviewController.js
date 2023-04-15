@@ -106,7 +106,17 @@ const createReviewSubmit = asyncHandler(async (req, res) => {
 
 })
 
+// @desc    Get reviews for a paper
+// @route   GET /api/reviews/:paperId
+// @access  Private
+const getReviews = asyncHandler(async (req, res) => {
+  const reviews = await Review.find({ paper: req.params.paperId });
+  res.status(200).json(reviews);
+});
+
+
 module.exports = {
+  getReviews,
   createReviewDraft,
   createReviewSubmit
 }

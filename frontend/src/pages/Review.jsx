@@ -1,9 +1,12 @@
 import React,{ useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { createReviewDraft, createReviewSubmit } from '../features/reviews/reviewSlice';
 
 function Review(){
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const dispatch = useDispatch();
   const { review } = useSelector((state) => state.review);
@@ -12,6 +15,10 @@ function Review(){
   const [privateComments, setPrivateComments] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isDraft, setIsDraft] = useState(false);
+
+  const handleBack = () => {
+    navigate(`/`);
+  };
 
 
   const handleDraftSubmit = (e) => {
@@ -38,6 +45,7 @@ function Review(){
     setIsSubmitted(true);
   };
 
+  
   return (
     <form className="review-form">
     <label className='label'>Overall Score:</label>
@@ -86,7 +94,9 @@ function Review(){
     <br />
     <div className="button-container">
       {!isSubmitted && <button className='button1' type="button" onClick={handleDraftSubmit}>Save as Draft</button>}
-      {!isSubmitted && <button className='button' type="button" onClick={handleSubmit}>Submit</button>}
+      {!isSubmitted && <button className='button1' type="button" onClick={handleSubmit}>Submit</button>}
+      {!isSubmitted && <button className='button1' type="button" onClick={handleBack}>Go Back</button>}
+
       {isSubmitted && <p>Review has been submitted.</p>}
     </div>
 
