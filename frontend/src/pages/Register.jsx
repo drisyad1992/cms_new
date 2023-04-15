@@ -5,6 +5,11 @@ import { toast } from 'react-toastify'
 import { FaUser } from 'react-icons/fa'
 import { register, reset } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
+<<<<<<< HEAD
+=======
+import { Link } from 'react-router-dom'
+
+>>>>>>> 246f999f577ad1c6ca29f27dd1a1f39912b482a5
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -122,6 +127,16 @@ function Register() {
               Submit
             </button>
           </div>
+<<<<<<< HEAD
+=======
+          <div className='form-group'>
+          <br/>
+        Already a user? Login&nbsp;
+        <Link to='/login'>
+                 Here
+              </Link>
+          </div>
+>>>>>>> 246f999f577ad1c6ca29f27dd1a1f39912b482a5
         </form>
       </section>
     </>

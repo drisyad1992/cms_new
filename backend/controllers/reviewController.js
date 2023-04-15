@@ -10,59 +10,112 @@ const createReviewDraft = asyncHandler(async (req, res) => {
     throw new Error('Paper not found')
   }
 
-  const existingReview = await Review.findOne({
+  let existingReview = await Review.findOne({
     paper: req.params.id,
-    //user: req.user.id,
-    isSubmitted: false
+    user: paper.user,
+    // isSubmitted: false
   })
 
-  const reviewFields = {
-    overallScore: req.body.overallScore,
-    reviewDetails: req.body.reviewDetails,
-    privateComments: req.body.privateComments,
-    //user: req.user.id,
-    //name: req.user.name,
-    paper: req.params.id,
-    isSubmitted: false
-  }
+  if (JSON.parse(req.body.isDraft) === true) {
 
-  let review
-  if (existingReview) {
-    review = await Review.findByIdAndUpdate(existingReview._id, reviewFields, {
-      new: true,
-      runValidators: true
-    })
-  } else {
-    review = await Review.create(reviewFields)
-  }
+    if (existingReview===null)
+    {
+  
+      existingReview=false;
+  
+    }
 
-  res.status(200).json(review)
+    if (!existingReview) {
+
+      const reviewFields = {
+        overallScore: req.body.overallScore,
+        reviewDetails: req.body.reviewDetails,
+        privateComments: req.body.privateComments,
+        user: paper.user,
+        //name: req.user.name,
+        paper: req.params.id,
+        isSubmitted: false
+      }
+  
+      existingReview = await Review.create(reviewFields)
+  
+    
+    }
+  
+    existingReview.overallScore = req.body.overallScore
+    existingReview.reviewDetails = req.body.reviewDetails
+    existingReview.privateComments = req.body.privateComments
+    existingReview.isSubmitted = false
+  
+    await existingReview.save()
+    res.status(200).json(existingReview)
+  
+}
 })
 
 // submit review
 const createReviewSubmit = asyncHandler(async (req, res) => {
-  const review = await Review.findOne({
+  const paper = await Paper.findById(req.params.id)
+
+  let reviewsubmit = await Review.findOne({
     paper: req.params.id,
-    //user: req.user.id,
-    isSubmitted: false
+    user: paper.user,
+    // isSubmitted: false
   })
 
-  if (!review) {
-    res.status(400)
-    throw new Error('Review not found')
+  if (JSON.parse(req.body.isDraft) === false) {
+
+    
+
+    if (reviewsubmit===null)
+    {
+
+      reviewsubmit=false;
+
+    }
+
+
+
+  if (!reviewsubmit) {
+
+    const reviewFields = {
+      overallScore: req.body.overallScore,
+      reviewDetails: req.body.reviewDetails,
+      privateComments: req.body.privateComments,
+      user: paper.user,
+      //name: req.user.name,
+      paper: req.params.id,
+      isSubmitted: true
+    }
+
+    reviewsubmit = await Review.create(reviewFields)
+
+  
   }
 
-  review.overallScore = req.body.overallScore
-  review.reviewDetails = req.body.reviewDetails
-  review.privateComments = req.body.privateComments
-  review.isSubmitted = true
+  reviewsubmit.overallScore = req.body.overallScore
+  reviewsubmit.reviewDetails = req.body.reviewDetails
+  reviewsubmit.privateComments = req.body.privateComments
+  reviewsubmit.isSubmitted = true
 
-  await review.save()
+  await reviewsubmit.save()
+  res.status(200).json(reviewsubmit)
 
-  res.status(200).json(review)
+}
+
 })
 
+// @desc    Get reviews for a paper
+// @route   GET /api/reviews/:paperId
+// @access  Private
+const getReviews = asyncHandler(async (req, res) => {
+  const reviews = await Review.find({ paper: req.params.paperId });
+  res.status(200).json(reviews);
+});
+
+
 module.exports = {
+  getReviews,
   createReviewDraft,
   createReviewSubmit
 }

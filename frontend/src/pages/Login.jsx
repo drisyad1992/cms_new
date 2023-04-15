@@ -6,6 +6,13 @@ import { toast } from 'react-toastify'
 import { login, reset } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
 import background from "../image.jpg";
+<<<<<<< HEAD
+=======
+import { IoMdLogIn } from 'react-icons/io';
+import { Link } from 'react-router-dom'
+
+
+>>>>>>> 246f999f577ad1c6ca29f27dd1a1f39912b482a5
 
 
 function Login() {
@@ -61,7 +68,11 @@ function Login() {
     <>
       <section className='heading'  style={{fontFamily: "Georgia, serif" }}>
         <h1>
+<<<<<<< HEAD
           <FaSignInAlt /> Login
+=======
+        <IoMdLogIn /> Login
+>>>>>>> 246f999f577ad1c6ca29f27dd1a1f39912b482a5
         </h1>
       </section>
 
@@ -94,6 +105,16 @@ function Login() {
             <button type='submit' className='btn btn-block' style={{fontFamily: "Georgia, serif" }} >
               Submit
             </button>
+<<<<<<< HEAD
+=======
+            <div className='form-group'>
+          <br/>
+        Not a User? Register&nbsp;
+        <Link to='/register'>
+                 Here
+              </Link>
+          </div>
+>>>>>>> 246f999f577ad1c6ca29f27dd1a1f39912b482a5
           </div>
         </form>
       </section>

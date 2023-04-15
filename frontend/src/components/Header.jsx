@@ -33,7 +33,7 @@ function Header() {
           </li>
         ) : (
           <>
-            <li style={{fontSize: "20px",display:'flex',justifyContent:'space-around',alignItems:'center' , fontFamily: "Georgia, serif"}}>
+            {/* <li style={{fontSize: "20px",display:'flex',justifyContent:'space-around',alignItems:'center' , fontFamily: "Georgia, serif"}}>
               <Link to='/login'>
                 <FaSignInAlt /> Login
               </Link>
@@ -42,7 +42,7 @@ function Header() {
               <Link to='/register'>
                 <FaUser /> Register
               </Link>
-            </li>
+            </li> */}
           </>
         )}
       </ul>
