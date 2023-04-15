@@ -26,11 +26,6 @@
   },
   "eslintConfig": {
     "extends": [
-<<<<<<< HEAD
-      "react-app",
-      "react-app/jest"
-=======
->>>>>>> 246f999f577ad1c6ca29f27dd1a1f39912b482a5
     ]
   },
   "browserslist": {
