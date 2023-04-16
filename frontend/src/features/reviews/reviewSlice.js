@@ -35,6 +35,18 @@ const reviewSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    getReviewsStart(state) {
+      state.loading = true;
+      state.error = null;
+    },
+    getReviewsSuccess(state, action) {
+      state.loading = false;
+      state.review = action.payload;
+    },
+    getReviewsFailure(state, action) {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -45,6 +57,9 @@ export const {
   createReviewSubmitStart,
   createReviewSubmitSuccess,
   createReviewSubmitFailure,
+  getReviewsStart,
+  getReviewsSuccess,
+  getReviewsFailure,
 } = reviewSlice.actions;
 
 export const createReviewDraft = (id, data) => async (dispatch) => {
@@ -66,5 +81,17 @@ export const createReviewSubmit = (id, data) => async (dispatch) => {
     dispatch(createReviewSubmitFailure(error.message));
   }
 };
+
+export const getReviews = (id)=>
+  async (dispatch) => {
+    dispatch(getReviewsStart());
+    try {
+      const reviewsFetch = await reviewService.getReviews(id);
+      dispatch(getReviewsSuccess(review));
+      
+    } catch (error) {
+      dispatch(getReviewsFailure(error.message));
+    }
+  };
 
 export default reviewSlice.reducer;

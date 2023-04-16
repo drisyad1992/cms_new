@@ -28,6 +28,20 @@ const getPapers = async (token) => {
   return response.data
 }
 
+// Get user papers by id
+const getPapersbyid = async (paperId) => {
+  const config = {
+    headers: {
+      // Authorization: `Bearer ${token}`,
+    },
+  }
+
+  const response = await axios.get(API_URL, config)
+
+  return response.data
+}
+
+
 // Delete user paper
 const deletePaper = async (paperId, token) => {
   const config = {
@@ -45,6 +59,7 @@ const paperService = {
   createPaper,
   getPapers,
   deletePaper,
+  getPapersbyid,
 }
 
 export default paperService

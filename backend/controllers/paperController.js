@@ -12,6 +12,23 @@ const getPapers = asyncHandler(async (req, res) => {
   res.status(200).json(papers)
 })
 
+// @desc    Get papers by id
+// @route   GET /api/papers/:id
+// @access  Private
+
+const getPaperById = asyncHandler(async (req, res) => {
+  const paper = await Paper.findById(req.params.id)
+
+  if (!paper) {
+    res.status(404)
+    throw new Error('Paper not found')
+  }
+
+  res.status(200).json(paper)
+})
+
+
+
 // @desc    Set paper
 // @route   POST /api/papers
 // @access  Private
@@ -92,4 +109,5 @@ module.exports = {
   setPaper,
   updatePaper,
   deletePaper,
+  getPaperById,
 }

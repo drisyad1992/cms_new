@@ -12,8 +12,7 @@ function App() {
   return (
     <>
       <Router >
-        {/* <div style={{  backgroundImage: `url(${background})`,backgroundSize: 'auto 100%'}}> */}
-        <div>
+        <div style={{  backgroundImage: `url(${background})`,backgroundSize: 'auto 100%'}}>
         <div>
           <Header />
           <Routes>
@@ -27,7 +26,6 @@ function App() {
             <Route path='/register' element={<div className='container1'><Register /></div>} />
 
             <Route path="/review/:id" element={<Review />}/>
-
 
           </Routes>
         </div>

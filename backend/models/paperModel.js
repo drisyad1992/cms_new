@@ -30,6 +30,9 @@ const paperSchema = mongoose.Schema(
 },
 submitted_by_author: {
   type: String
+},
+paper_identifier:{
+  type: Number
 }
   },
   {

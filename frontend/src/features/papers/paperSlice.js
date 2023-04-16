@@ -47,6 +47,26 @@ export const getPapers = createAsyncThunk(
   }
 )
 
+// Get user papers
+export const getPapersbyid = createAsyncThunk(
+  'papers/getbyid',
+  async (_, thunkAPI) => {
+    try {
+      // const token = thunkAPI.getState().auth.user.token
+      return await paperService.getPapers(id)
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
+
 // Delete user paper
 export const deletePaper = createAsyncThunk(
   'papers/delete',
@@ -100,6 +120,21 @@ export const paperSlice = createSlice({
         state.isError = true
         state.message = action.payload
       })
+
+      .addCase(getPapersbyid.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(getPapersbyid.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.papers = action.payload
+      })
+      .addCase(getPapersbyid.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
+      
       .addCase(deletePaper.pending, (state) => {
         state.isLoading = true
       })
