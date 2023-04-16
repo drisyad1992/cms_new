@@ -12,13 +12,13 @@ const createReviewSubmit = async (id, data) => {
   return response.data;
 };
 
-const getReviews = async(id) => {
-  const response = await axios.get(`${API_URL}/review/view/${id}`);
+const getReviewsbyId = async(id) => {
+  const response = await axios.get(`${API_URL}/view/${id}`);
   return response.data;
 }
 
 const reviewService = {
-  getReviews,
+  getReviewsbyId,
   createReviewDraft,
   createReviewSubmit,
 }

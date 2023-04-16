@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import background from "../src/image.jpg"
 import Review from './pages/Review'
+import ViewReview from './pages/ViewReview'
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
             <Route path='/register' element={<div className='container1'><Register /></div>} />
 
             <Route path="/review/:id" element={<Review />}/>
+
+            <Route path="/reviews/view/:id" element={<ViewReview />}/>
 
           </Routes>
         </div>

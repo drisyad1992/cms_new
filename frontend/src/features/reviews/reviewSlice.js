@@ -5,6 +5,7 @@ const initialState = {
   review: null,
   error: null,
   loading: false,
+  reviews: []
 };
 
 const reviewSlice = createSlice({
@@ -41,7 +42,7 @@ const reviewSlice = createSlice({
     },
     getReviewsSuccess(state, action) {
       state.loading = false;
-      state.review = action.payload;
+      state.reviews = action.payload;
     },
     getReviewsFailure(state, action) {
       state.loading = false;
@@ -82,16 +83,14 @@ export const createReviewSubmit = (id, data) => async (dispatch) => {
   }
 };
 
-export const getReviews = (id)=>
-  async (dispatch) => {
-    dispatch(getReviewsStart());
-    try {
-      const reviewsFetch = await reviewService.getReviews(id);
-      dispatch(getReviewsSuccess(review));
-      
-    } catch (error) {
-      dispatch(getReviewsFailure(error.message));
-    }
-  };
+export const getReviewsbyId = (id) => async (dispatch) => {
+  dispatch(getReviewsStart());
+  try {
+    const reviews = await reviewService.getReviewsbyId(id);
+    dispatch(getReviewsSuccess(reviews));
+  } catch (error) {
+    dispatch(getReviewsFailure(error.message));
+  }
+};
 
 export default reviewSlice.reducer;
