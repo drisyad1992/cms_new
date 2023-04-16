@@ -28,6 +28,12 @@ const reviewSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
+  paper_identifier: {
+    type:Number,
+  },
+  username:{
+    type: String
+  }
   
 },
  { timestamps: true });

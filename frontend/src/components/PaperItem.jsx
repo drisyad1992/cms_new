@@ -6,6 +6,7 @@ function PaperItem({ paper }) {
   const navigate = useNavigate();
   const [hasSubmittedReview, setHasSubmittedReview] = useState(false);
 
+  //Fetching review details by paperid
   useEffect(() => {
     const fetchReviewData = async () => {
       try {
@@ -32,11 +33,33 @@ function PaperItem({ paper }) {
     fetchReviewData();
   }, [paper._id]);
 
+  //Fetch Paper details by Paper id
+  useEffect(() => {
+    const fetchPaperDetails = async () => {
+      try {
+        const response = await fetch(`/api/papers/${paper._id}`);
+  
+        if (response.ok) {
+          const paperDetails = await response.json();
+          console.log(paperDetails);
+          // do something with the paper details
+        } else {
+          throw new Error('Failed to fetch paper details');
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    fetchPaperDetails();
+  }, [paper._id]);
+
+  
   const handleReviewClick = () => {
     navigate(`/review/${paper._id}`);
   };
   const handleViewReview = () => {
-    navigate(`/review/view/${paper._id}`);
+    navigate(`/reviews/view/${paper._id}`);
   };
 
   return (

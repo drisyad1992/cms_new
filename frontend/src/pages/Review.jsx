@@ -2,7 +2,8 @@ import React,{ useState } from 'react';
 import { useParams,useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createReviewDraft, createReviewSubmit } from '../features/reviews/reviewSlice';
-
+import { getPapersbyid } from '../features/papers/paperSlice';
+import { useEffect } from 'react';
 function Review(){
   const navigate = useNavigate();
 
@@ -15,6 +16,46 @@ function Review(){
   const [privateComments, setPrivateComments] = useState(review?.privateComments || '');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isDraft, setIsDraft] = useState(false);
+  const { user } = useSelector((state) => state.auth);
+  const [paperData, setPaper] = useState(null); // state to hold paper details
+
+
+
+  // const fetchPaperDetails = async () => {
+  //   try {
+  //     const response = await fetch(`/api/papers/${id}`);
+  //     if (response.ok) {
+  //       const { paper_identifier } = await response.json();
+  //       setData({ ...data, paper_identifier });
+  //     } else {
+  //       throw new Error('Failed to fetch paper details');
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+
+  
+  useEffect(() => {
+    const fetchPaperData = async () => {
+      try {
+        const response = await fetch(`/api/papers/${id}`);
+
+        if (response.ok) {
+          const paperData = await response.json();
+          setPaper(paperData);
+        } else {
+          throw new Error('Failed to fetch paper data');
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchPaperData();
+  }, [id]);
+
   const handleBack = () => {
     navigate(`/`);
   };
@@ -22,14 +63,12 @@ function Review(){
 
   const handleDraftSubmit = (e) => {
     e.preventDefault();
-    console.log(overallScore);
       if (!overallScore && !reviewDetails && !privateComments) {
         alert('Please fill atleast one field');
         return;
       } 
-    
     const data = { overallScore, reviewDetails, privateComments,isDraft:true };
-    dispatch(createReviewDraft(id, data));
+    dispatch(createReviewDraft(id, data,paperData.paper_identifier,{username: user.name}));
     alert('Thank You!! Your draft has been saved');
     setIsSubmitted(false);
   };
@@ -41,7 +80,7 @@ function Review(){
       return;
     }
     const data = { overallScore, reviewDetails, privateComments,isDraft:false };
-    dispatch(createReviewSubmit(id, data));
+    dispatch(createReviewSubmit(id, data,paperData.paper_identifier,{username: user.name}));
     alert('Review submitted! You cannot make any further changes');
     setIsSubmitted(true);
   };
