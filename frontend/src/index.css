@@ -9,6 +9,7 @@
 body {
   font-family: 'Poppins', sans-serif;
   height: 100vh;
+  background-image: url('./image.jpg');
 }
 
 a {
@@ -33,6 +34,13 @@ h2,
 h3 {
   font-weight: 600;
   margin-bottom: 10px;
+}
+
+.column {
+  height: 200px; /* set a fixed height */
+  width: 300px; /* set a fixed width */
+  overflow-y: auto; /* enable vertical scrolling */
+  overflow-x: auto; /* enable horizontal scrolling */
 }
 
 .container {
@@ -173,7 +181,7 @@ h3 {
 }
 
 .btn:hover {
-  background-color: #D33F40;
+  background-color: #5b4f4f;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
@@ -239,12 +247,12 @@ h3 {
 .label {
   font-size: 12px;
   font-weight: 700;
-  color: purple;
+  color: navy;
 }
 
 /* Styles for the slider input */
 input[type="range"] {
-  width: 50%;
+  width: 30%;
   height: 25px;
   background: #ddd;
   outline: none;
@@ -306,13 +314,19 @@ textarea {
 .button1 {
   margin: 20px;
   padding: 10px 20px;
-  border-radius: 5px;
-  background-color: #bc7716e9;
+  border-radius: 7px;
+  background-color: navy;
   color: white;
   border: none;
   cursor: pointer;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
+  width: 130px;
+  height: 40px;
+}
+.button1:hover {
+  background-color: #5b4f4f;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 button2 {
@@ -345,18 +359,68 @@ p {
 
 /* Media queries */
 @media only screen and (max-width: 600px) {
-  input[type="range"] {
-    width: 80%;
+  /* Media query for screens smaller than 600px */
+@media only screen and (max-width: 600px) {
+  input[type="range"]::-webkit-slider-thumb {
+  width: 56px;
+  height: 16px;
+  margin-top: -5px;
   }
   
-  .slider-labels-container, .slider-legend-container {
-    flex-wrap: wrap;
+  .slider-legend {
+  width: calc(100% / 5);
+  margin: 0;
+  font-size: 12px;
   }
   
-  .slider-label, .slider-legend {
-    width: calc(150px / 5);
-    margin: 5px;
+  .slider-label {
+  width: calc(100% / 5);
+  margin: 0;
+  font-size: 12px;
   }
+  }
+  
+  /* Media query for screens between 600px and 960px */
+  @media only screen and (min-width: 601px) and (max-width: 960px) {
+  input[type="range"]::-webkit-slider-thumb {
+  width: 58px;
+  height: 18px;
+  margin-top: -6px;
+  }
+  
+  .slider-legend {
+  width: calc(100% / 5);
+  margin: 0;
+  font-size: 14px;
+  }
+  
+  .slider-label {
+  width: calc(100% / 5);
+  margin: 0;
+  font-size: 14px;
+  }
+  }
+  
+  /* Media query for screens larger than 960px */
+  @media only screen and (min-width: 961px) {
+  input[type="range"]::-webkit-slider-thumb {
+  width: 50px;
+  height: 20px;
+  margin-top: -7px;
+  }
+  
+  .slider-legend {
+  width: calc(320px / 5);
+  margin: 0 20px;
+  font-size: 16px;
+  }
+  
+  .slider-label {
+  width: calc(320px / 5);
+  margin: 0 20px;
+  font-size: 16px;
+  }
+  
 
   input[type="number"],
   textarea {
@@ -375,5 +439,6 @@ p {
   .button1 {
     margin-top: 10px;
   }
+}
 }
 

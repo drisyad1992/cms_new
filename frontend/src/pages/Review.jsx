@@ -1,21 +1,20 @@
 import React,{ useState } from 'react';
 import { useParams,useNavigate } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { createReviewDraft, createReviewSubmit } from '../features/reviews/reviewSlice';
 
 function Review(){
   const navigate = useNavigate();
 
+  
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { review } = useSelector((state) => state.review);
-  const [overallScore, setOverallScore] = useState(0);
-  const [reviewDetails, setReviewDetails] = useState('');
-  const [privateComments, setPrivateComments] = useState('');
+  const { review} = useSelector((state) => state.review);
+  const [overallScore, setOverallScore] = useState(review?.overallScore || 0);
+  const [reviewDetails, setReviewDetails] = useState(review?.reviewDetails || '');
+  const [privateComments, setPrivateComments] = useState(review?.privateComments || '');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isDraft, setIsDraft] = useState(false);
-
   const handleBack = () => {
     navigate(`/`);
   };
@@ -23,10 +22,12 @@ function Review(){
 
   const handleDraftSubmit = (e) => {
     e.preventDefault();
-    if (!overallScore && !reviewDetails && !privateComments) {
-      alert('Please fill at least one field');
-      return;
-    } 
+    console.log(overallScore);
+      if (!overallScore && !reviewDetails && !privateComments) {
+        alert('Please fill atleast one field');
+        return;
+      } 
+    
     const data = { overallScore, reviewDetails, privateComments,isDraft:true };
     dispatch(createReviewDraft(id, data));
     alert('Thank You!! Your draft has been saved');
@@ -35,7 +36,7 @@ function Review(){
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!overallScore || !reviewDetails || !privateComments) {
+    if (!reviewDetails || !privateComments) {
       alert('Please fill all the fields');
       return;
     }

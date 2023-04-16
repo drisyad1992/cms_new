@@ -109,7 +109,7 @@ const createReviewSubmit = asyncHandler(async (req, res) => {
 // @route   GET /api/reviews/:paperId
 // @access  Private
 const getReviews = asyncHandler(async (req, res) => {
-  const reviews = await Review.find({ paper: req.params.paperId });
+  const reviews = await Review.find({ paper: req.params.id });
   res.status(200).json(reviews);
 });
 

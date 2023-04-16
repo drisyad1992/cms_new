@@ -12,8 +12,7 @@ function App() {
   return (
     <>
       <Router >
-        {/* <div style={{  backgroundImage: `url(${background})`,backgroundSize: 'auto 100%'}}> */}
-        <div>
+        <div style={{  backgroundImage: `url(${background})`,backgroundSize: 'auto 100%'}}>
         <div>
           <Header />
           <Routes>

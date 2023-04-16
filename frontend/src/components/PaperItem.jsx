@@ -44,7 +44,10 @@ function PaperItem({ paper }) {
       <td style={{ align: 'left' }}>{paper.paper_title}</td>
       <td style={{ align: 'left' }}>{paper.authors}</td>
       <td>{paper.keywords}</td>
-      <td>{paper.abstract}</td>
+      <td style={{ align: 'left', maxWidth: '300px' }}>
+      <div style={{ overflowX: 'auto', maxHeight: '200px', textAlign: 'justify' }}>
+         {paper.abstract}</div>
+      </td>
       <td>
         <a href={paper.pdf_attachment} target="_blank">
           View Paper
@@ -53,9 +56,9 @@ function PaperItem({ paper }) {
       <td>{paper.submitted_by_author}</td>
       <td>
         {hasSubmittedReview ? (
-          <button onClick={handleViewReview}>View Review</button>
+          <button className= 'button1' onClick={handleViewReview}>View Review</button>
           ) : (
-          <button onClick={handleReviewClick}>Review</button>
+          <button className= 'button1'onClick={handleReviewClick}>Review</button>
         )}
       </td>
     </tr>

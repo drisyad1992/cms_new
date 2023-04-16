@@ -10,7 +10,7 @@ const {
 
 router.route('/draft/:id').post(createReviewDraft)
 router.route('/submit/:id').post(createReviewSubmit)
-router.route('/:paperId').get( getReviews);
+router.route('/review/view/:id').get( getReviews);
 
 
 module.exports = router
