@@ -1,3 +1,6 @@
+// This is a functional component named Spinner that renders a spinning animation. 
+
+
 function Spinner() {
     return (
       <div className='loadingSpinnerContainer'>

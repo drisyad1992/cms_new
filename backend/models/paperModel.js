@@ -1,3 +1,4 @@
+//Paper Model
 const mongoose = require('mongoose')
 
 const paperSchema = mongoose.Schema(
@@ -8,10 +9,6 @@ const paperSchema = mongoose.Schema(
       ref: 'User',
     }
     ,
-    // text: {
-    //   type: String,
-    //   required: [true, 'Please add a text value'],
-    // }
     
     paper_title: {
       type: String

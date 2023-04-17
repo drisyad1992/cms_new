@@ -4,6 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createReviewDraft, createReviewSubmit } from '../features/reviews/reviewSlice';
 import { getPapersbyid } from '../features/papers/paperSlice';
 import { useEffect } from 'react';
+
+//React functional component that allows users to submit reviews for a paper. 
+//The component also includes logic to handle form validation and to handle 
+//whether the review is a draft or a final submission.
+
+
 function Review(){
   const navigate = useNavigate();
 
@@ -17,23 +23,8 @@ function Review(){
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isDraft, setIsDraft] = useState(false);
   const { user } = useSelector((state) => state.auth);
-  const [paperData, setPaper] = useState(null); // state to hold paper details
+  const [paperData, setPaper] = useState(null); // State to hold paper details
 
-
-
-  // const fetchPaperDetails = async () => {
-  //   try {
-  //     const response = await fetch(`/api/papers/${id}`);
-  //     if (response.ok) {
-  //       const { paper_identifier } = await response.json();
-  //       setData({ ...data, paper_identifier });
-  //     } else {
-  //       throw new Error('Failed to fetch paper details');
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
 
 
   

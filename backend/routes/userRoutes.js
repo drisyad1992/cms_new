@@ -1,3 +1,5 @@
+//Exports an Express.js router and set routes to Users
+
 const express = require('express')
 const router = express.Router()
 const {

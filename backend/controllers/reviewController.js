@@ -2,11 +2,11 @@ const asyncHandler = require('express-async-handler')
 const Review = require('../models/reviewModel')
 const Paper = require('../models/paperModel')
 const UserDetails = require('../models/userModel')
-// const userdetails = require('../models/UserModel')
 
 let submittedReviews = [];
 
-// create or update review draft
+//A function that creates or updates a review draft for a paper
+
 const createReviewDraft = asyncHandler(async (req, res) => {
   const paper = await Paper.findById(req.params.id)
   if (!paper) {
@@ -19,7 +19,6 @@ const createReviewDraft = asyncHandler(async (req, res) => {
   let existingReview = await Review.findOne({
     paper: req.params.id,
     user: paper.user,
-    // isSubmitted: false
   })
 
   if (JSON.parse(req.body.isDraft) === true) {
@@ -63,14 +62,14 @@ const createReviewDraft = asyncHandler(async (req, res) => {
 }
 })
 
-// submit review
+// A function that submits a review for a paper
+
 const createReviewSubmit = asyncHandler(async (req, res) => {
   const paper = await Paper.findById(req.params.id)
 
   let reviewsubmit = await Review.findOne({
     paper: req.params.id,
     user: paper.user,
-    // isSubmitted: false
   })
 
   const user = await UserDetails.findById(paper.user)
@@ -125,6 +124,8 @@ const createReviewSubmit = asyncHandler(async (req, res) => {
 // @desc    Get reviews for a paper
 // @route   GET /api/reviews/:paperId
 // @access  Private
+//A function that returns all the reviews for a paper given the paper ID.
+
 const getReviews = asyncHandler(async (req, res) => {
   const reviews = await Review.find({ paper: req.params.id });
   res.status(200).json(reviews);
@@ -133,6 +134,7 @@ const getReviews = asyncHandler(async (req, res) => {
 // @desc    Get reviews for a paper
 // @route   GET /api/reviews/view/:paperId
 // @access  Private
+//A function that returns all the submitted reviews for a paper given the paper ID
 
 const getReviewsbyid = asyncHandler(async (
   req, res) => {
@@ -167,6 +169,7 @@ const getReviewsbyid = asyncHandler(async (
 //@desc    Get papers by id
 // @route   GET /api/papers/:id
 // @access  Private
+//A function that returns the paper data given the paper ID.
 
 const getPaperById = asyncHandler(async (req, res) => {
   const paper = await Paper.findById(req.params.id)

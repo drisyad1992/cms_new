@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ReviewList from './ReviewList';
 
 function PaperItem({ paper }) {
   const navigate = useNavigate();
@@ -41,8 +40,6 @@ function PaperItem({ paper }) {
   
         if (response.ok) {
           const paperDetails = await response.json();
-          console.log(paperDetails);
-          // do something with the paper details
         } else {
           throw new Error('Failed to fetch paper details');
         }

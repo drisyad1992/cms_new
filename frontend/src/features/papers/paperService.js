@@ -32,7 +32,6 @@ const getPapers = async (token) => {
 const getPapersbyid = async (paperId) => {
   const config = {
     headers: {
-      // Authorization: `Bearer ${token}`,
     },
   }
 
@@ -42,23 +41,11 @@ const getPapersbyid = async (paperId) => {
 }
 
 
-// Delete user paper
-const deletePaper = async (paperId, token) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }
 
-  const response = await axios.delete(API_URL + paperId, config)
-
-  return response.data
-}
 
 const paperService = {
   createPaper,
   getPapers,
-  deletePaper,
   getPapersbyid,
 }
 

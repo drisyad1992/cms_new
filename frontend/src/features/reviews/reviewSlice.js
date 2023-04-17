@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import reviewService from './reviewService';
 
+//Redux slice that defines the initial state and action creators for managing reviews in the application
+
 const initialState = {
   review: null,
   error: null,
@@ -63,6 +65,8 @@ export const {
   getReviewsFailure,
 } = reviewSlice.actions;
 
+//Action creator function for creating a review draft
+
 export const createReviewDraft = (id, data) => async (dispatch) => {
   dispatch(createReviewDraftStart());
   try {
@@ -73,6 +77,9 @@ export const createReviewDraft = (id, data) => async (dispatch) => {
   }
 };
 
+//Asynchronous action creator using Redux-Thunk middleware. 
+//It dispatches actions to update the store's state for creating and submitting reviews.
+
 export const createReviewSubmit = (id, data) => async (dispatch) => {
   dispatch(createReviewSubmitStart());
   try {
@@ -82,6 +89,8 @@ export const createReviewSubmit = (id, data) => async (dispatch) => {
     dispatch(createReviewSubmitFailure(error.message));
   }
 };
+
+//This function is an asynchronous action creator that retrieves reviews for a given ID from the server
 
 export const getReviewsbyId = (id) => async (dispatch) => {
   dispatch(getReviewsStart());

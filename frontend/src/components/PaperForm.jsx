@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createPaper } from '../features/papers/paperSlice'
+//Simple React component for a form that allows users to create a new paper.
 
 function PaperForm() {
   const [text, setText] = useState('')

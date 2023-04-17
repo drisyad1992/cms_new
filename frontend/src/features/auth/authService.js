@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const API_URL = '/api/users/'
 
-// Register user
+// The register method sends a POST request to the API to register a new user.
 const register = async (userData) => {
   const response = await axios.post(API_URL, userData)
 
@@ -13,7 +13,8 @@ const register = async (userData) => {
   return response.data
 }
 
-// Login user
+// The login method sends a POST request to the API to authenticate a user.
+
 const login = async (userData) => {
   const response = await axios.post(API_URL + 'login', userData)
 
@@ -24,7 +25,8 @@ const login = async (userData) => {
   return response.data
 }
 
-// Logout user
+// The logout method removes the user object from local storage, effectively logging the user out
+
 const logout = () => {
   localStorage.removeItem('user')
 }

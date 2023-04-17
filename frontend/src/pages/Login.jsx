@@ -9,9 +9,9 @@ import background from "../image.jpg";
 import { IoMdLogIn } from 'react-icons/io';
 import { Link } from 'react-router-dom'
 
+//Code for Login Component. The Login component is using React hooks to manage component state and side effects. 
 
-
-
+//useState hook to manage the state of the email and password input fields
 function Login() {
   const [formData, setFormData] = useState({
     email: '',
@@ -27,6 +27,7 @@ function Login() {
     (state) => state.auth
   )
 
+  //useEffect hook to handle side effects such as displaying error messages or navigating to other pages upon successful login.
   useEffect(() => {
     if (isError) {
       toast.error(message)

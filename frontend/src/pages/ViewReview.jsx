@@ -4,6 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getReviewsbyId } from '../features/reviews/reviewSlice';
 import Spinner from '../components/Spinner'
 
+//React component ViewReview imports useEffect, useParams, useNavigate, useDispatch, and useSelector 
+//from the react-router-dom and react-redux libraries, as well as a Spinner component from a local file. 
+//It also imports a function called getReviewsbyId from a reviewSlice file.
+
+
 const ViewReview = () => {
   const navigate = useNavigate();
 
@@ -26,10 +31,10 @@ const ViewReview = () => {
   return (
     <>
     <section className='heading' >
-        {/* <h1>Welcome {user && user.name}</h1> */}
         
-        <h2 style={{fontFamily: "Georgia, serif" }}>Reviews to the Paper</h2>
-      </section>
+        <section className='heading' >
+        <h2 style={{fontFamily: "Georgia, serif" , textAlign: "center"}}>Reviews Dashboard</h2>
+      </section>      </section>
       {loading && <div>Loading reviews...</div>}
       {error && <div>Error fetching reviews: {error}</div>}
       {!loading && !error && reviews.length === 0 && <div>No reviews found</div>}
@@ -37,7 +42,7 @@ const ViewReview = () => {
         <table className="table  table-striped table-bordered table-hover table-sm" style={{textAlign: "left"}}>
           <thead>
             <tr class="danger">
-              <th  style={{paddingLeft: "10px",width: "10%"}}>Author Name</th>
+              <th  style={{paddingLeft: "10px",width: "10%"}}>Reviewer</th>
               <th  style={{paddingLeft: "10px",width: "10%"}}>Overall Score</th>
               <th  style={{paddingLeft: "10px",width: "10%"}}>Review Details</th>
               <th  style={{paddingLeft: "10px",width: "10%"}}>Private Comments</th>

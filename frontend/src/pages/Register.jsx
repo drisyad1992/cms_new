@@ -7,6 +7,10 @@ import { register, reset } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
 import { Link } from 'react-router-dom'
 
+//React component called Register that handles user registration.
+
+//The component defines a state variable called formData that contains the user's name, 
+//email, password, and password confirmation.
 
 function Register() {
   const [formData, setFormData] = useState({

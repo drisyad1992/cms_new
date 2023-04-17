@@ -6,6 +6,10 @@ import PaperItem from '../components/PaperItem'
 import Spinner from '../components/Spinner'
 import { getPapers, reset } from '../features/papers/paperSlice'
 
+//Dashboard page which is used to display all assigned papers
+//It renders a header, a table of papers with their details, 
+//and a message if there are no assigned papers.
+
 function Dashboard() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -38,22 +42,16 @@ function Dashboard() {
   return (
     <>
       <section className='heading' >
-        {/* <h1>Welcome {user && user.name}</h1> */}
         <h2 style={{fontFamily: "Georgia, serif" }}>Papers Dashboard</h2>
       </section>
 
-      {/* <PaperForm /> */}
 
       <section className='content'>
-      <p style={{ fontSize: "25px",textAlign: "left", fontFamily: "Georgia, serif"}}>Assigned Papers :</p>
+      <p style={{ fontSize: "25px",textAlign: "left", fontFamily: "Georgia, serif",fontWeight: "bold"}}>Assigned Papers :</p>
 
         {papers.length > 0 ? (
           <div >
-            {/* {papers.map((paper) => (
-              <PaperItem key={paper._id} paper={paper} />
-            ))} */}
-            <br></br>
-      {/* table-striped  table-bordered*/}
+           
 <table className="table  table-striped table-bordered table-hover table-sm" style={{textAlign: "left"}} >
     <thead>
         <tr class="danger">
@@ -63,7 +61,6 @@ function Dashboard() {
             <th style={{paddingLeft: "10px" ,width: "10%"}}>Abstract</th>
             <th style={{paddingLeft: "10px" ,width: "10%"}}>PDF Attachment</th>
 
-            {/* <th style={{paddingLeft: "30px" ,width: "20%"}}>Comment</th> */}
             <th style={{paddingLeft: "10px" ,width: "10%" , align: "left"}}>Submitted by Author</th>
             <th style={{paddingLeft: "10px" ,width: "10%"}}>Action</th>
         </tr>

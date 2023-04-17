@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import paperService from './paperService'
 
+//This code is a Redux slice that defines the state, actions, and reducers for managing papers in an application.
+
 const initialState = {
   papers: [],
   isError: false,
@@ -29,6 +31,7 @@ export const createPaper = createAsyncThunk(
 )
 
 // Get user papers
+
 export const getPapers = createAsyncThunk(
   'papers/getAll',
   async (_, thunkAPI) => {
@@ -47,12 +50,12 @@ export const getPapers = createAsyncThunk(
   }
 )
 
-// Get user papers
+// Get user papers by passing id
+
 export const getPapersbyid = createAsyncThunk(
   'papers/getbyid',
   async (_, thunkAPI) => {
     try {
-      // const token = thunkAPI.getState().auth.user.token
       return await paperService.getPapers(id)
     } catch (error) {
       const message =
@@ -67,24 +70,6 @@ export const getPapersbyid = createAsyncThunk(
 )
 
 
-// Delete user paper
-export const deletePaper = createAsyncThunk(
-  'papers/delete',
-  async (id, thunkAPI) => {
-    try {
-      const token = thunkAPI.getState().auth.user.token
-      return await paperService.deletePaper(id, token)
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString()
-      return thunkAPI.rejectWithValue(message)
-    }
-  }
-)
 
 export const paperSlice = createSlice({
   name: 'paper',
@@ -135,21 +120,7 @@ export const paperSlice = createSlice({
         state.message = action.payload
       })
       
-      .addCase(deletePaper.pending, (state) => {
-        state.isLoading = true
-      })
-      .addCase(deletePaper.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.isSuccess = true
-        state.papers = state.papers.filter(
-          (paper) => paper._id !== action.payload.id
-        )
-      })
-      .addCase(deletePaper.rejected, (state, action) => {
-        state.isLoading = false
-        state.isError = true
-        state.message = action.payload
-      })
+     
   },
 })
 

@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import authService from './authService'
 
+//Creates a Redux slice for handling authentication-related state in a React application
+
 // Get user from localStorage
 const user = JSON.parse(localStorage.getItem('user'))
 

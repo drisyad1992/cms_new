@@ -1,3 +1,5 @@
+//Exports an Express.js router and set routes to Reviews
+
 const express = require('express')
 const router = express.Router()
 const {
@@ -7,7 +9,6 @@ const {
     getReviewsbyid
 } = require('../controllers/reviewController')
 
-//const { protect } = require('../middleware/authMiddleware')
 
 router.route('/draft/:id').post(createReviewDraft)
 router.route('/submit/:id').post(createReviewSubmit)

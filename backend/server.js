@@ -1,3 +1,5 @@
+// Middleware for error handling and database connection
+// with three API routes for papers, users, and reviews
 const path = require('path');
 const express = require('express');
 const colors = require('colors');
