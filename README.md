@@ -22,6 +22,10 @@ React for displaying UI components.
 Redux to manage application's state.
 Redux Thunk middleware to handle asynchronous redux actions.
 
+# Link to Repository
+[Repository Link]
+https://github.com/drisyad1992/cms_new.git
+
 
 # Install
 Some basic Git commands are:
