@@ -11,9 +11,9 @@ function Review(){
   const { id } = useParams();
   const dispatch = useDispatch();
   const { review} = useSelector((state) => state.review);
-  const [overallScore, setOverallScore] = useState(review?.overallScore || 0);
-  const [reviewDetails, setReviewDetails] = useState(review?.reviewDetails || '');
-  const [privateComments, setPrivateComments] = useState(review?.privateComments || '');
+  const [overallScore, setOverallScore] = useState(0);
+  const [reviewDetails, setReviewDetails] = useState('');
+  const [privateComments, setPrivateComments] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isDraft, setIsDraft] = useState(false);
   const { user } = useSelector((state) => state.auth);
@@ -56,6 +56,48 @@ function Review(){
     fetchPaperData();
   }, [id]);
 
+
+  const fetchReviewData = async () => {
+    try {
+      const response = await fetch(`/api/reviews/${id}`);
+      if (response.ok) {
+        const reviewData = await response.json();
+        console.log(reviewData);
+
+        
+        
+        
+        // Find the review that matches the paper ID and is not submitted
+        const incompleteReview = reviewData.find(review => review.paper === id && review.isSubmitted === false);
+        if (incompleteReview===null)
+        {
+  
+          incompleteReview=false;
+  
+        }
+        if (incompleteReview) {
+          // Set the text fields with the values from the incomplete review
+          setOverallScore(incompleteReview.overallScore);
+          setReviewDetails(incompleteReview.reviewDetails);
+          setPrivateComments(incompleteReview.privateComments);
+          setHasSubmittedReview(false);
+        } else {
+          setHasSubmittedReview(true);
+        }
+      } else {
+        throw new Error('Failed to fetch review data');
+      }
+    } catch (error) {
+      console.error(error);
+      setHasSubmittedReview(false);
+    }
+  };
+  
+  useEffect(() => {
+    fetchReviewData();
+  }, [id]);
+  
+
   const handleBack = () => {
     navigate(`/`);
   };
@@ -85,6 +127,8 @@ function Review(){
     setIsSubmitted(true);
   };
 
+
+  
   
   return (
     <form className="review-form">
@@ -135,9 +179,14 @@ function Review(){
     <div className="button-container">
       {!isSubmitted && <button className='button1' type="button" onClick={handleDraftSubmit}>Save as Draft</button>}
       {!isSubmitted && <button className='button1' type="button" onClick={handleSubmit}>Submit</button>}
-      {!isSubmitted && <button className='button1' type="button" onClick={handleBack}>Go Back</button>}
 
-      {isSubmitted && <p>Review has been submitted.</p>}
+      {isSubmitted && <p style={{textAlign: 'center'}}>Review has been submitted.</p>}
+      <div style={{ display: "flex", justifyContent: "center" }}>
+
+      { <button className='button1' type="button" onClick={handleBack}>Go Back</button>}
+      </div>
+
+
     </div>
 
   </form>

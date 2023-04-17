@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getReviewsbyId } from '../features/reviews/reviewSlice';
 import Spinner from '../components/Spinner'
 
 const ViewReview = () => {
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const dispatch = useDispatch();
   const { reviews, loading, error } = useSelector(state => state.review);
@@ -13,6 +15,11 @@ const ViewReview = () => {
     dispatch(getReviewsbyId(id));
   }, [dispatch]);
 
+  const handleBack = () => {
+    navigate(`/`);
+  };
+
+
   if (loading) {
     return <Spinner />
   }
@@ -20,6 +27,7 @@ const ViewReview = () => {
     <>
     <section className='heading' >
         {/* <h1>Welcome {user && user.name}</h1> */}
+        
         <h2 style={{fontFamily: "Georgia, serif" }}>Reviews to the Paper</h2>
       </section>
       {loading && <div>Loading reviews...</div>}
@@ -33,20 +41,33 @@ const ViewReview = () => {
               <th  style={{paddingLeft: "10px",width: "10%"}}>Overall Score</th>
               <th  style={{paddingLeft: "10px",width: "10%"}}>Review Details</th>
               <th  style={{paddingLeft: "10px",width: "10%"}}>Private Comments</th>
+             
             </tr>
           </thead>
           <tbody>
             {reviews.map(review => (
-              <tr key={review._id}>
+              <tr class="info" key={review._id}>
                 <td>{review.username}</td>
                 <td>{review.overallScore}</td>
                 <td>{review.reviewDetails}</td>
                 <td>{review.privateComments}</td>
+                
               </tr>
             ))}
+            
           </tbody>
+         
+
+           
         </table>
+
+
+
       }
+       <div style={{ display: "flex", justifyContent: "center" }}>
+
+{ <button className='button1' type="button" onClick={handleBack}>Go Back</button>}
+</div>
     </>
   );
 };

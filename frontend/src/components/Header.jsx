@@ -26,11 +26,11 @@ function Header() {
         {user ? (
           // <li>
           <li style={{display:'flex', width:'250px',justifyContent:'space-around',alignItems:'center', fontFamily: "Georgia, serif"}}>
-          <h1 style={{fontSize: "20px"}}>{user && user.name}</h1>
-            <button className='btn' onClick={onLogout}>
-              <FaSignOutAlt /> Logout
-            </button>
-          </li>
+      <h1 style={{fontSize: "20px", width: "160px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginLeft: "-40px"}}>{user && user.name}</h1>
+  <button className='btn' onClick={onLogout}>
+    <FaSignOutAlt /> Logout
+  </button>
+</li>
         ) : (
           <>
             {/* <li style={{fontSize: "20px",display:'flex',justifyContent:'space-around',alignItems:'center' , fontFamily: "Georgia, serif"}}>

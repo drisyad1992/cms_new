@@ -4,6 +4,7 @@ const Paper = require('../models/paperModel')
 const UserDetails = require('../models/userModel')
 // const userdetails = require('../models/UserModel')
 
+let submittedReviews = [];
 
 // create or update review draft
 const createReviewDraft = asyncHandler(async (req, res) => {
@@ -141,7 +142,20 @@ const getReviewsbyid = asyncHandler(async (
     return res.status(404).json({ error: "Paper not found" });
     }
     const reviews = await Review.find({ paper_identifier: paper.paper_identifier });
-    res.status(200).json(reviews);
+    if (!res.headersSent) {
+      submittedReviews.length = 0;
+
+    for (let i = 0; i < reviews.length; i++) {
+      
+    if(reviews[i].isSubmitted==true)
+    {
+      submittedReviews.push(reviews[i]);
+
+    }
+    }}
+
+    res.status(200).json(submittedReviews);
+
     } catch (error) {
     console.error(error.message);
     res.status(500).send("Server Error");
