@@ -4,14 +4,14 @@ Conference Management application is built with MERN stack, and utilizes third p
 
 1. A reviewer of the conference logs into their online account and can view the list of papers assigned
 to them to review. For each paper they see: paper title, authors, keywords, abstract, pdf
-attachment, and name of author that submitted the paper.
+attachment, and name of author that submitted the paper- Implemented by Drisya
 2. The reviewer has the option to enter a review for a paper. Details to enter are: overall score (2
 accept to -2 reject), review details, private comments to other reviewers and conference
 organizers. The reviewer can save their review in draft format for future editing. When the reviewer
-clicks submit on their review, they cannot make further edits to the review.
+clicks submit on their review, they cannot make further edits to the review- Implemented by Suramya
 3. When a reviewer submits their review for a paper, they can see the other reviews already
 submitted for the paper. Their review is also visible to other reviewers who have already submitted
-a review; but hidden from those who have not yet submitted their review
+a review; but hidden from those who have not yet submitted their review- Implemented by Tianze
 
 Features:
 
